@@ -1,0 +1,21 @@
+{
+  "recorded_on": "2026-10-11",
+  "omarchy": "4.0.4-1",
+  "orca-ide-bin": "1.4.217-1",
+  "quickshell": {
+    "url": "https://github.com/lemun/quickshell-dots.git",
+    "revision": "f5c8c91dafbdb34b32bf87c8b78b551a1a91f189",
+    "profile": "shai",
+    "setup_guide": "https://github.com/lemun/quickshell-dots/blob/main/docs/airpods.md",
+    "policy": "Standalone installer downloads origin main; revision records the inspected version, not a lock"
+  },
+  "matrix": {
+    "url": "https://github.com/BVisagie/omarchy-matrix-theme",
+    "revision": "01b09c3603db68f4623923cb79d82bc49369075a",
+    "policy": "Omarchy installs upstream; revision records the inspected version, not a lock"
+  },
+  "airpods": {
+    "url": "https://github.com/thisisgm/omarchy-pods",
+    "policy": "Optional separate plugin and daemon; pair devices locally"
+  }
+}

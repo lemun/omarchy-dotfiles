@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+case "${1:-help}" in
+  help|--help|-h)
+    cat <<'HELP'
+Usage: ./setup <component>
+  status       Read installed versions and Orca patch compatibility
+  orca         Install root-owned Orca patch and Pacman hook (sudo)
+  quickshell   Use the standalone fork installer; asks before changing the bar
+  matrix       Install/select Matrix; asks before applying the desktop theme
+  desktop      Apply optional saved appearance/input overrides; asks first
+Run components separately. See README.md for prerequisites and AirPods setup.
+HELP
+    ;;
+  status)
+    pacman -Q omarchy orca-ide-bin python 2>/dev/null || true
+    if [[ -f /usr/lib/orca-ide/app.asar ]]; then
+      /usr/bin/python3 -I "$root/components/orca-matrix/orca-matrix-theme.py" --check
+    fi
+    ;;
+  orca) exec bash "$root/components/orca-matrix/install.sh" ;;
+  quickshell)
+    echo 'This runs the standalone Quickshell installer: it replaces/restarts the bar,'
+    echo 'applies the shai profile, enables login startup, and may stop Waybar.'
+    read -r -p 'Approve this action? Type yes: ' answer
+    [[ $answer == yes ]] || exit 1
+    repo=${QUICKSHELL_DOTS_DIR:-"$root/../quickshell-dots"}
+    [[ $EUID != 0 ]] || { echo 'Run as your normal user.' >&2; exit 1; }
+    if [[ ! -e $repo ]]; then
+      git clone https://github.com/lemun/quickshell-dots.git "$repo"
+    fi
+    [[ $(git -C "$repo" remote get-url origin) == https://github.com/lemun/quickshell-dots.git ]] || {
+      echo 'Expected lemun/quickshell-dots origin; review this checkout.' >&2; exit 1;
+    }
+    echo 'The fork installer downloads origin main; see components/versions.json for recorded revisions.'
+    QS_SHELL_REPO_URL=https://github.com/lemun/quickshell-dots.git bash "$repo/install.sh" --autostart --no-ai-backend --profile=shai
+    ;;
+  matrix)
+    echo 'This installs/selects Matrix, changing desktop colors and wallpaper and running theme hooks.'
+    read -r -p 'Approve this action? Type yes: ' answer
+    [[ $answer == yes ]] || exit 1
+    omarchy theme install https://github.com/BVisagie/omarchy-matrix-theme
+    omarchy theme set Matrix
+    ;;
+  desktop) exec bash "$root/components/desktop/install.sh" ;;
+  *) echo "Unknown component: $1" >&2; exit 2 ;;
+esac

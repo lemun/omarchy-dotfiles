@@ -1,0 +1,11 @@
+# Configuration is curated, never a wholesale home-directory snapshot.
+.env
+.env.*
+*.pem
+*.key
+*.asar
+*.bak
+__pycache__/
+*.pyc
+local/
+backups/

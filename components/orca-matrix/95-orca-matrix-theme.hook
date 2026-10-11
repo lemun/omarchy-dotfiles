@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = orca-ide-bin
+
+[Action]
+Description = Apply and verify the personal Matrix palette for Orca
+When = PostTransaction
+Depends = python
+Exec = /usr/bin/python3 -I /usr/local/lib/omarchy-dotfiles/orca-matrix-theme.py --apply
