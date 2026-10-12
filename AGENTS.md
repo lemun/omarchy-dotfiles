@@ -7,3 +7,10 @@ and likely effect and get explicit user approval. This includes changing/restart
 the bar, display changes, suspend, hibernate, reboot, shutdown, and power tests.
 Do not configure automatic shutdown on lid close on the user's MacBookPro14,2.
 Never copy credentials, pairing keys, runtime caches, or machine identifiers.
+
+Treat requested Omarchy tweaks and ricing as portable dotfiles changes by default.
+Persist them in this repo or the appropriate standalone fork, update restoration
+instructions, and commit and push validated changes unless the user requests local
+only work. Save exact Quickshell preferences in quickshell-dots/profiles/shai;
+this repo's setup quickshell command restores that profile. Preserve the rule
+against copying secrets, runtime data, and machine-specific configuration.

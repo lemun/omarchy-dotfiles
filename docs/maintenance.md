@@ -12,6 +12,18 @@ new bar installations and updates. Replacing its main branch with upstream would
 discard the personal customizations. Keeping it as a fork also preserves upstream
 attribution and makes future merges straightforward.
 
+## Persist requested customizations
+
+Requested Omarchy tweaks and ricing should be saved as portable defaults, then
+committed and pushed after validation. Desktop changes belong in this repo;
+bar implementation and exact preferences belong in the standalone Quickshell
+fork. Keep restore instructions and inspected revisions current.
+
+The saved Shai V2 bar profile includes the top notch layout and Auto-hide.
+`./setup quickshell` restores it on another machine. Existing bar installations
+can receive the implementation through the bar updater; to restore the exact
+saved preferences, follow the profile reapply instructions in the fork's guide.
+
 ## Save changes to the bar preferences
 
 After changing the layout or appearance, run:
