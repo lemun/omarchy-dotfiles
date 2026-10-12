@@ -20,6 +20,12 @@ does not execute it. On another machine, port its monitor assumptions first,
 review its recovery commands, announce the display action and obtain approval
 before installing. Do not copy its active monitor-disable toggles.
 
+The helper received a lock/display-sleep guard on 2026-10-12 after repeated
+Quickshell lock-screen crashes around monitor switching. The reusable guard,
+update instructions, validation and recovery notes are preserved in
+[Display and lock-screen crashes](display-lock-crashes.md). The installed
+mitigation still needs confirmation through normal idle use.
+
 The inspected Hyprland startup loads an external-display-auto user service; this
 is tied to that display component. The existing monitor config uses preferred
 modes and scale 1. Neither is exported as a universal monitor policy.

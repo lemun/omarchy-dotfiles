@@ -95,6 +95,7 @@ That command commits and pushes in the standalone fork. This repo doesn't run it
 - [Orca safety, verification, upgrades, restore and legacy recovery](docs/orca.md)
 - [Desktop preferences, backup and restore](docs/desktop.md)
 - [Inspected configuration and hardware specific components](docs/machine-notes.md)
+- [Display switching and lock-screen crash mitigation](docs/display-lock-crashes.md)
 
 Rerun `./setup orca` after editing the patch to refresh the root-owned copy. The
 Pacman hook automatically reapplies after installing/upgrading `orca-ide-bin`.
